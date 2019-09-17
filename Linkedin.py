@@ -17,21 +17,27 @@ SCOPE:
 """
 import time
 from selenium import webdriver
-
+browser = webdriver.Chrome()
 # Create an instance of Chrome WebDriver
 driver = webdriver.Chrome()
 # Maximize the browser window
 driver.maximize_window()
 # Navigate to Qxf2 Tutorial page
 driver.get("https://in.linkedin.com/")
+browser.get("https://in.linkedin.com/")
 
 # KEY POINT: Locate the button and click on it 
-button  = driver.find_element_by_xpath("//a[href='https://www.linkedin.com/login?fromSignIn=true&trk=guest_homepage-basic_nav-header-signin']") 
+button  = driver.find_element_by_xpath("//a[text()='Sign in']") 
 button.click()
 
 # Pause the script to wait for page elements to load
 time.sleep(3)
 
+if(browser.title=="LinkedIn India: Log In or Sign Up"):
+    print ("Success:  page launched successfully")
+else:
+    print ("Failed:  page Title is incorrect") 
+browser.quit() 
 # Close the browser
 driver.close()
 
